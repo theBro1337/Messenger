@@ -1,0 +1,42 @@
+from Tkinter import *
+import hashlib
+def signup():
+    username = tb2.get("1.0",END)
+    password = tb4.get("1.0",END)
+    print username
+    print password
+    hash = hashlib.md5(username.encode())
+    hashed = hash.hexdigest()
+    print hashed
+    file1 = open(".config1.txt", "w")
+    file1.write(hashed)
+    file1.close()
+    hash1 = hashlib.md5(password.encode())
+    hashed1 = hash1.hexdigest()
+    print hashed1
+    file2 = open(".config2.txt", "w")
+    file2.write(hashed1)
+    file2.close()
+root1 = Tk()
+root1.title("Sign Up")
+root1.geometry("800x600")
+root1.resizable(0,0)
+root1.configure(bg="white")
+img1 = PhotoImage(file="bg.png")
+img2 = PhotoImage(file="wall.png")
+img3 = PhotoImage(file="send.png")
+lb1 = Label(root1, image=img1)
+lb1.place(x=0,y=0)
+lb2 = Label(root1, image=img2)
+lb2.place(x=370,y=250)
+lb3 = Label(root1, text="Enter Your username:",bg="#e7e7e7", fg="black",font="Belinda 12 bold")
+lb3.place(x=470,y=300)
+tb2 = Text(root1,bd=0,highlightthickness=1,highlightbackground="#00ffff",highlightcolor="#00ffff",width=20,height=1,font="Lato")
+tb2.place(x=480,y=340)
+lb4 = Label(root1, text="Enter Your password:",bg="#e7e7e7", fg="black",font="Belinda 12 bold")
+lb4.place(x=470,y=380)
+tb4 = Text(root1,bd=0,highlightthickness=1,highlightbackground="#00ffff",highlightcolor="#00ffff",width=20,height=1,font="Lato")
+tb4.place(x=480,y=420)
+bt1 = Button(root1,image=img3,command=signup,bg="#e7e7e7",bd=0)
+bt1.place(x=540,y=460)
+root1.mainloop()
